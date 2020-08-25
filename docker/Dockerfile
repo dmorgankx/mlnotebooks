@@ -15,7 +15,6 @@ FROM jupyterq AS mlnotebooks
 
 COPY requirements.txt README.md /opt/kx/mlnotebooks/
 COPY data/ /opt/kx/mlnotebooks/data/
-COPY images/ /opt/kx/mlnotebooks/images/
 COPY notebooks/ /opt/kx/mlnotebooks/notebooks/
 COPY utils/ /opt/kx/mlnotebooks/utils/
 #hack, better way, tensorflow-gpu should be used if possible
