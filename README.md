@@ -47,7 +47,7 @@ The contents of the notebooks are as follows:
 
 11. **Clustering**: Examples of how to use the k-means, DBSCAN, affinity propagation, hierarchical and CURE algorithms available within the ML-Toolkit are provided. The notebook demonstrates how to effectively visualize results produced and make use of scoring functions contained within the toolkit. A real-world application is also included.
 
-12. **Time Series Forecasting**: The notebook looks at a variety of time series forecasting models contained within the ML-Toolkit such as AutoRegressive models, AutoRegressive Integrated Moving average models, along with time series specific feature engineering tools for passing time series data to supervised machine learning models.
+12. **Time Series Forecasting**: The notebook looks at a variety of time series forecasting models contained within the ML-Toolkit such as AR, ARIMA and SARIMA models along with time series specific feature engineering tools for passing time series data to supervised machine learning models.
 
 ## Requirements 
 
