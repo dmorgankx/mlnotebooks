@@ -66,7 +66,8 @@ RUN . /opt/conda/etc/profile.d/conda.sh \
 	&& conda install --file /opt/kx/nlp/requirements.txt \ 
 	&& pip install -r /opt/kx/mlnotebooks/requirements.txt \
 	&& conda install -c anaconda graphviz \
-	&& conda install -c conda-forge --file /opt/kx/ml/requirements.txt \ 
+        && pip install pip==9.0.1 \
+        && pip install -r /opt/kx/ml/requirements.txt \
 	&& conda install -c conda-forge --file /opt/kx/automl/requirements.txt \
 	&& conda clean -y --all \
 	&& python -m spacy download en \
