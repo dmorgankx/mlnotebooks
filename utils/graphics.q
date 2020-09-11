@@ -140,3 +140,38 @@ plotprxpred:{
     plt[`:ylabel]["Close Price"];
     plt[`:show][]`;
  }
+
+// @kind function
+// @category misc
+// @fileoverview Plot a time series
+// @param dt     {list} the timeframe of the timeseries
+// @param series {list} the values of the timeseries
+// @param label  {string} plot label
+// @return {<} embedpy plot
+pltTimeSeries:{[dt;series;label]
+ plt[`:plot][q2pydts dt;series];
+ plt[`:xlabel]["Date"];
+ plt[`:ylabel][label];
+ plt[`:title][label," vs Date"];
+ plt[`:show][];}
+
+q2pydts:{.p.import[`numpy;
+                   `:array;
+                   "j"$x-("pmd"t)$1970.01m;
+                   `dtype pykw "datetime64[",@[("ns";"M";"D");t:type[x]-12],"]"]}
+
+// @kind function
+// @category misc
+// @fileoverview  Plot the predicted and true values
+// @param preds {list} predicted values
+// @param true  {list}  true values
+// @param lab   {string} plot label
+// @return {<} embedpy plot
+pltResult:{
+ [preds;true;lab]
+ {plt[`:plot][x];}each(preds;true);
+ plt[`:legend][`preds`true];
+ plt[`:xlabel]["DateTime"];
+ plt[`:ylabel][lab];
+ plt[`:title][lab," vs DateTime"];
+ plt[`:show][];}
