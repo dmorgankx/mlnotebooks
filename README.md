@@ -16,7 +16,7 @@ The Kx NLP library can be used to answer a variety of questions about unstructur
 
 ## ML-Toolkit
 
-The toolkit contains libraries and scripts that provide kdb+/q users with general-use functions and procedures to perform machine-learning tasks on a wide variety of datasets. This includes utility functions, the FRESH (FeatuRe Extraction and Scalable Hypothesis testing) algorithm, cross validation and grid search procedures, and clustering algorithms.
+The toolkit contains libraries and scripts that provide kdb+/q users with general-use functions and procedures to perform machine-learning tasks on a wide variety of datasets. This includes utility functions, the FRESH (FeatuRe Extraction and Scalable Hypothesis testing) algorithm, cross validation and grid search procedures, clustering algorithms and time series forecasting models and feature engineering functions.
 
 ## AutoML
 
