@@ -149,10 +149,11 @@ plotprxpred:{
 // @param label  {string} plot label
 // @return {<} embedpy plot
 pltTimeSeries:{[dt;series;label]
- plt[`:plot][q2pydts dt;series];
+ plt[`:plot][dts:q2pydts dt;series];
  plt[`:xlabel]["Date"];
  plt[`:ylabel][label];
  plt[`:title][label," vs Date"];
+ plt[`:xticks][q2pydts dt .ml.arange[0;count dt;50]];
  plt[`:show][];}
 
 q2pydts:{.p.import[`numpy;
