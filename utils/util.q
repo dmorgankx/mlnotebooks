@@ -1,3 +1,5 @@
+\d .util
+
 /imports
 .p.import[`warnings;`:filterwarnings]"ignore";
 npa:.p.import[`numpy]`:array
