@@ -37,3 +37,7 @@ dateFill:{[dt;tab;tm]
 // @param sz  {float} train test split
 // @return {dict} the input data split up into train and test sets
 ttsTimeSeries:{[tab;tar;sz]`xtrain`ytrain`xtest`ytest!raze(tab;tar)@\:/:(0,floor n*1-sz)_til n:count tab}
+
+rmsle:{
+  "The RMSLE is: ",string .ml.rmsle[x;y]
+  }
