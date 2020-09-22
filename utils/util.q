@@ -41,4 +41,3 @@ ttsTimeSeries:{[tab;tar;sz]`xtrain`ytrain`xtest`ytest!raze(tab;tar)@\:/:(0,floor
 rmsle:{
   "The RMSLE is: ",string .ml.rmsle[x;y]
   }
-
