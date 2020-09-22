@@ -150,7 +150,7 @@ plotprxpred:{
 // @param series {list} the values of the timeseries
 // @param label  {string} plot label
 // @return {<} embedpy plot
-pltTimeSeries:{[dt;series;label]
+plotTimeSeries:{[dt;series;label]
  plt[`:plot][q2pydts dt;series];
  plt[`:xlabel]["Date"];
  plt[`:ylabel][label];
