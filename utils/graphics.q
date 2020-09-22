@@ -180,3 +180,67 @@ plotResiduals:{
   plt[`:show][];
   }
 
+// @kind function
+// @category misc
+// @fileoverview Plot results in scatter plot
+// @param trn    {float[][]} Data points in value flip format
+// @param tst    {float[][]} Data points in value flip format
+// @param ttl    {string}    Plot title
+// @param clt    {long[]}    List of cluster labels
+// @param s      {boolean}   Indicates whether to show plot or not
+// @return       {null}
+plotResults:{[trn;tst;ttl;clt;s]
+  $[clt~(::);
+    plt[`:scatter]. trn;
+    plt[`:scatter][;;`c pykw clt]. trn];
+  if[not tst~();
+    plt[`:scatter][;;`c pykw`r;`label pykw"Testing data"]. tst;
+    plt[`:legend][`bbox_to_anchor pykw 1.05 1;`loc pykw"upper left"]];
+  plt[`:title]ttl;
+  plt[`:xlabel]"X";
+  plt[`:ylabel]"Y";
+  if[s;plt[`:show][];];
+  }
+
+// plot new dataset - inputs trn and ttl
+plotDataset:plotResults[;();;::;1b]
+// plot clusters from single dataset - inputs trn,ttl,clt
+plotCluster:plotResults[;();;;1b]
+// plot clusters for training and testing data - inputs trn,tst,ttl,clt
+plotTrainTest:plotResults[;;;;1b]
+// plot kmeans and add cluster centres - trn,ttl and results from kmeans algo r1 and updated results r2
+plotKMeans:{[trn;r1;r2;ttl]
+  plotResults[trn;();ttl;;0b]$[(::)~r2;r1`clt;r2`clt];
+  plt[`:scatter][;;`c pykw"#ff028d";`marker pykw"*";`s pykw 500;`label pykw"Original centres"]. flip r1`reppts;
+  if[not(::)~r2;
+    plt[`:scatter][;;`c pykw"#21fc0d";`marker pykw"*";`s pykw 500;`label pykw"Updated centres"]. flip r2`reppts];
+  plt[`:legend][`bbox_to_anchor pykw 1.05 1;`loc pykw"upper left"];
+  plt[`:show][];
+  }
+
+// Plot clusters and dendrogram
+// @param d     {float[][]} Data points
+// @param lf    {symbol}    Linkage function
+// @param dend  {dict}      Results of HC algo
+// @param clust {long[]}    Clusters - results of HC cut function
+// @return      {null}
+plotHCResults:{[d;lf;dend;clust]
+  // initialize subplots
+  subplots:plt[`:subplots][1;2];
+  fig::subplots[@;0];axarr::subplots[@;1];
+  fig[`:set_size_inches;18.5;8.5];
+  // set plot title
+  ttl:@[string lf;0;upper];
+  // plot clusters
+  a0:axarr[@;0];
+  a0[`:scatter][;;`c pykw clust`clt]. d;
+  a0[`:set_title]ttl," Clustered Data";
+  a0[`:set_xlabel]"X";
+  a0[`:set_ylabel]"Y";
+  // plot dendrogram using scipy functionality
+  .p.import[`scipy.cluster;`:hierarchy;`:dendrogram]flip value flip dend`dgram;
+  plt[`:title]ttl," Dendrogram";
+  plt[`:xlabel]"Point Index";
+  plt[`:ylabel]"Distance";
+  plt[`:show][];
+  }
