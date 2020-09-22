@@ -1,3 +1,5 @@
+\d .util
+
 / import libraries
 plt:.p.import`matplotlib.pyplot
 .p.import[`mpl_toolkits.mplot3d]`:Axes3D;
@@ -148,7 +150,7 @@ plotprxpred:{
 // @param series {list} the values of the timeseries
 // @param label  {string} plot label
 // @return {<} embedpy plot
-pltTimeSeries:{[dt;series;label]
+plotTimeSeries:{[dt;series;label]
  plt[`:plot][dts:q2pydts dt;series];
  plt[`:xlabel]["Date"];
  plt[`:ylabel][label];
@@ -160,19 +162,21 @@ q2pydts:{.p.import[`numpy;
                    `:array;
                    "j"$x-("pmd"t)$1970.01m;
                    `dtype pykw "datetime64[",@[("ns";"M";"D");t:type[x]-12],"]"]}
+plotPredTrue :{
+  {plt[`:plot][x];}each(x;y);
+  plt[`:legend][`preds`true];
+  plt[`:xlabel]["Time in hours"];
+  plt[`:ylabel]["Bike Shares"];
+  plt[`:title][" Bike Shares vs Time in hours"];
+  plt[`:show][];
+  }
 
-// @kind function
-// @category misc
-// @fileoverview  Plot the predicted and true values
-// @param preds {list} predicted values
-// @param true  {list}  true values
-// @param lab   {string} plot label
-// @return {<} embedpy plot
-pltResult:{
- [preds;true;lab]
- {plt[`:plot][x];}each(preds;true);
- plt[`:legend][`preds`true];
- plt[`:xlabel]["DateTime"];
- plt[`:ylabel][lab];
- plt[`:title][lab," vs DateTime"];
- plt[`:show][];}
+plotResiduals:{
+  plt[`:plot][z;x-y];
+  plt[`:legend][enlist`residuals];
+  plt[`:xlabel]["Time in hours"];
+  plt[`:ylabel]["Residuals"];
+  plt[`:title]["Residuals vs Time in hours"];
+  plt[`:show][];
+  }
+
